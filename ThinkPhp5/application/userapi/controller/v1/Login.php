@@ -29,6 +29,9 @@ class Login extends UserApi
      * 用户登陆
      * @param Request $request
      * @throws ParamException
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function login(Request $request)
     {
@@ -41,9 +44,7 @@ class Login extends UserApi
         $userFind = new UserToken();
         $wxResult = $userFind->getUserToken($code);
 
-
-        print_r($wxResult);exit;
-
+        $this->success($wxResult);
     }
 
     /**
@@ -53,8 +54,6 @@ class Login extends UserApi
      */
     public function sendSms(Request $request)
     {
-        $a = Config('sms.accessKeyId');
-        print_r($a);exit;
         $mobile = trim($request->param('mobile'));
 
         if (empty($mobile)) {
@@ -62,8 +61,9 @@ class Login extends UserApi
         }
 
 
-        $addSendSms = SmsModel::addSendSms($mobile);
-        print_r($addSendSms);
+        SmsModel::addSendSms($mobile);
+
+        $this->success('发送成功');
 
     }
 

@@ -40,6 +40,9 @@ Route::any('userapi/v1/login_sms','userapi/v1.Login/sendSms');
 //  注册
 Route::any('userapi/v1/register','userapi/v1.Login/register');
 
+//  修改个人资料
+Route::any('userapi/v1/user/update_info','userapi/v1.User/updateUserInfo');
+
 //  -------------------------------测试
 Route::get('think', function () {
     return 'hello,ThinkPHP5!';

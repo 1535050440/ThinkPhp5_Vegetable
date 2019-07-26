@@ -11,6 +11,7 @@ namespace app\userapi\controller;
 
 use app\common\exception\ParamException;
 use app\common\exception\TokenException;
+use app\common\model\UserModel;
 use think\App;
 use think\Controller;
 
@@ -49,13 +50,16 @@ class UserApi
             //获取参数token
             $token = request()->header('token');
 
-            $user = cache($token);
-            if (!$user) {
+            $userCache = cache($token);
+            if (!$userCache) {
                 $this->success([], 'token不存在，请重新获取!', 401);
             }
 
-            $user = \app\common\model\Trainer::find($user['id']);
-            request()->user = $user;
+            $user_id = json_decode($userCache)->user_id;
+
+            $userFind = UserModel::get($user_id);
+
+            request()->user = $userFind;
         }
 
     }

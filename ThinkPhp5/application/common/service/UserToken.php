@@ -54,7 +54,24 @@ class UserToken
             throw new ParamException($wxResult['errmsg']);
         }
 
-        return $this->grantToken($wxResult);
+        $open_id = $wxResult['openid'];
+        $userFind = UserModel::where('open_id','=',$open_id)
+            ->find();
+
+        if (!$userFind) {
+            $status = false;
+            $token = '';
+        } else {
+            $status = true;
+            $token = $this->grantToken($wxResult);
+        }
+
+        $result = [
+            'status' => $status,
+            'token' => $token
+        ];
+
+        return $result;
     }
 
 
@@ -67,7 +84,6 @@ class UserToken
         $result = curl_get($this->wxLoginUrl);
         $wxResult = json_decode($result, true);
 
-        print_r($wxResult);exit;
         if (empty($wxResult)) {
             // 为什么以empty判断是否错误，这是根据微信返回
             // 规则摸索出来的
@@ -84,13 +100,14 @@ class UserToken
             throw new ParameException($wxResult['errmsg']);
         }
 
-        return $this->grantToken($wxResult);
+//        return $this->grantToken($wxResult);
     }
 
     /**
      * 根据获取的openid 查询用户表
      * @param $wxResult
      * @return string
+     * @throws ParamException
      * @throws \think\db\exception\DataNotFoundException
      * @throws \think\db\exception\ModelNotFoundException
      * @throws \think\exception\DbException
