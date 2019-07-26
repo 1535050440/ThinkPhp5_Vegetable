@@ -1,0 +1,34 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: 14155
+ * Date: 2019/7/10
+ * Time: 23:52
+ */
+
+namespace app\userapi\controller\v1;
+
+
+use app\common\model\ProductModel;
+use app\userapi\controller\UserApi;
+use think\Request;
+
+class Product extends UserApi
+{
+    /**
+     * 单个商品展示
+     * @param Request $request
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function getProductFind(Request $request)
+    {
+        $id = $request->param('id');
+
+        $productFind = ProductModel::getProductFind($id);
+
+        $this->success($productFind);
+    }
+
+}
