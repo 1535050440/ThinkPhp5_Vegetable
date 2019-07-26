@@ -1,7 +1,6 @@
 /.idea
 /.vscode
 /config
-/vendor
 *.log
 .env
 .DS_Store
