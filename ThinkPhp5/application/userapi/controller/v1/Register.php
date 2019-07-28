@@ -55,8 +55,8 @@ class Register extends UserApi
         if (!$smsFind) {
             throw new ParamException('手机号输入错误！');
         }
-        if ($smsFind->code != $code) {
-            throw new ParamException($smsFind->code.'验证码输入错误，请重试！'.$code);
+        if ($smsFind->code != $yzm) {
+            throw new ParamException('验证码输入错误，请重试！');
         }
 
         $userFind = new UserToken();
