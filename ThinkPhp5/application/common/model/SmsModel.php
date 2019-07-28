@@ -37,7 +37,7 @@ class SmsModel extends BaseModel
 
         //  发送短信
         try {
-//            SmsService::sendSms($mobile,$code);
+            SmsService::sendSms($mobile,$code);
             $result = 'OK';
         } catch (\Exception $e) {
             $result = $e->getMessage();
