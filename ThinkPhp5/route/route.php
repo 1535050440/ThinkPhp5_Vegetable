@@ -38,7 +38,7 @@ Route::any('userapi/v1/user/info','userapi/v1.User/info');
 Route::any('userapi/v1/login_sms','userapi/v1.Login/sendSms');
 
 //  注册
-Route::any('userapi/v1/register','userapi/v1.Login/register');
+Route::any('userapi/v1/register','userapi/v1.Register/register');
 
 //  修改个人资料
 Route::any('userapi/v1/user/update_info','userapi/v1.User/updateUserInfo');

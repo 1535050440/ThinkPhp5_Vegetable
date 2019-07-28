@@ -30,14 +30,14 @@ class SmsModel extends BaseModel
             'create_time'=>date('Y-m-d H:i:s'),
             'ip'=>request()->ip(),
             'code' => $code,
-            'type_name' => $code,
+            'type_name' => 'REGISTER',
         ];
 
         $smsFind = self::create($data);
 
         //  发送短信
         try {
-            SmsService::sendSms($mobile,$code);
+//            SmsService::sendSms($mobile,$code);
             $result = 'OK';
         } catch (\Exception $e) {
             $result = $e->getMessage();

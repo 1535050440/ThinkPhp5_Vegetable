@@ -47,7 +47,8 @@ class UserModel extends BaseModel
             //  不存在，新增一条
             $userFind = self::create([
                 'open_id' => $open_id,
-                'add_time' => time()
+                'add_time' => time(),
+                'invite_code' => rand(1000,9999)
             ]);
         }
         if (empty($userFind->mobile)) {
