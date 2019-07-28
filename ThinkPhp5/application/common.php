@@ -25,3 +25,16 @@ function curl_get($url, &$httpCode = 0)
 
     return $file_contents;
 }
+
+/**
+ * 手机号因此中间四位
+ * @param $mobile
+ * @return string
+ */
+function mobile_change($mobile)
+{
+    $mobile_start = substr($mobile,0,3);
+    $mobile_end = substr($mobile,7,4);
+
+    return $mobile_start.'****'.$mobile_end;
+}
