@@ -16,11 +16,9 @@ Route::get('userapi/v1/banner_list','userapi/v1.Banner/getBannerList');
 
 //  栏目
 Route::get('userapi/v1/category_list','userapi/v1.Category/getCategory');
-Route::get('userapi/v1/category_product_find','userapi/v1.Category/getCategoryProductList');
 
 //  主题
 Route::get('userapi/v1/theme_list','userapi/v1.Theme/getThemeList');
-Route::get('userapi/v1/theme_product_find','userapi/v1.Theme/getThemeProductList');
 
 //  商品详情
 Route::get('userapi/v1/product_find','userapi/v1.Product/getProductFind');
@@ -42,9 +40,14 @@ Route::any('userapi/v1/register','userapi/v1.Register/register');
 Route::any('userapi/v1/user/add_sign','userapi/v1.UserSign/addUserSign');
 
 
-
 //  修改个人资料
 Route::any('userapi/v1/user/update_info','userapi/v1.User/updateUserInfo');
+
+//  -------------------------------商品
+Route::any('userapi/v1/product/getProductList','userapi/v1.Product/getProductList');
+
+
+//  -------------------------------商品
 
 //  -------------------------------测试
 Route::get('think', function () {

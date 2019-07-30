@@ -32,21 +32,4 @@ class Category extends UserApi
         $this->success($categoryModel);
 
     }
-
-    /**
-     * 获取栏目下的商品
-     * @param Request $request
-     * @throws \think\exception\DbException
-     */
-    public function getCategoryProductList(Request $request)
-    {
-        $id = $request->param('id');
-        $list_rows = $request->param('list_rows')?:10;
-        $page = $request->param('page')?:1;
-
-        $data = CategoryModel::getCategoryProductList($id ,$list_rows, $page);
-
-        $this->success($data);
-    }
-
 }

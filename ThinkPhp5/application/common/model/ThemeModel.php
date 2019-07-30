@@ -41,6 +41,10 @@ class ThemeModel extends BaseModel
     {
         return $this->hasMany('ProductModel','img_id','id');
     }
+    public function themeProduct()
+    {
+        return $this->belongsTo('ThemeProductModel','theme_id','id');
+    }
 
     /**
      * 获取未删除的主题列表
@@ -65,10 +69,12 @@ class ThemeModel extends BaseModel
      */
     public static function getThemeProductList($id, $list_rows = 10,$page = 1)
     {
-        return self::with(['products','products.img'])
-            ->where('id','=',$id)
-            ->paginate($list_rows,false,['page'=>$page]);
+        $query = ThemeProductModel::alias('a')
+            ->join('product b','a.product_id = b.id','left');
 
+        $result = $query->paginate($list_rows,false,['page'=>$page]);
+
+        return $result;
     }
 
 }
