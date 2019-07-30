@@ -16,7 +16,8 @@ use think\Request;
 class Theme extends UserApi
 {
     protected $no_need_token = [
-        'getThemeList'
+        'getThemeList',
+        'getThemeProductList'
     ];
 
     /**
@@ -41,10 +42,13 @@ class Theme extends UserApi
     public function getThemeProductList(Request $request)
     {
         $id = $request->param('id');
-        $list_rows = $request->param('list_rows')?:10;
+        $listRows = $request->param('listRows')?:10;
         $page = $request->param('page')?:1;
 
-        $themeModel = ThemeModel::getThemeProductList($id, $list_rows,$page);
+        $paramArray = [
+            'theme_id' => $id
+        ];
+        $themeModel = ThemeModel::getThemeProductList($listRows,$page,$paramArray);
         $this->success($themeModel);
 
     }

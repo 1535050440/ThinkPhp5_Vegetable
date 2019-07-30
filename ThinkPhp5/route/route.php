@@ -19,7 +19,7 @@ Route::get('userapi/v1/category_list','userapi/v1.Category/getCategory');
 
 //  主题
 Route::get('userapi/v1/theme_list','userapi/v1.Theme/getThemeList');
-
+Route::get('userapi/v1/theme_product_list','userapi/v1.Theme/getThemeProductList');
 //  商品详情
 Route::get('userapi/v1/product_find','userapi/v1.Product/getProductFind');
 

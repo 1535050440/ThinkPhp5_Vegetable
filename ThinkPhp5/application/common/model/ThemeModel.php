@@ -61,16 +61,24 @@ class ThemeModel extends BaseModel
     }
 
     /**
-     * @param $id
      * @param int $list_rows
      * @param int $page
+     * @param array $paramArray
      * @return \think\Paginator
      * @throws \think\exception\DbException
      */
-    public static function getThemeProductList($id, $list_rows = 10,$page = 1)
+    public static function getThemeProductList($list_rows = 10,$page = 1,$paramArray = [])
     {
         $query = ThemeProductModel::alias('a')
-            ->join('product b','a.product_id = b.id','left');
+            ->field('a.theme_id')
+            ->field('b.*')
+            ->field('c.from,c.path')
+            ->join('product b','a.product_id = b.id','left')
+            ->join('image c','b.img_id = c.id','left');
+
+        if (!empty($paramArray['theme_id'])) {
+            $query->where('a.theme_id','=',$paramArray['theme_id']);
+        }
 
         $result = $query->paginate($list_rows,false,['page'=>$page]);
 
