@@ -46,6 +46,7 @@ Route::any('userapi/v1/user/update_info','userapi/v1.User/updateUserInfo');
 //  -------------------------------商品
 Route::any('userapi/v1/product/getProductList','userapi/v1.Product/getProductList');
 
+Route::any('userapi/v1/order/add_order','userapi/v1.Order/addOrder');
 
 //  -------------------------------商品
 

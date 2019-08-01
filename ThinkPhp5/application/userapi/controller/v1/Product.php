@@ -9,18 +9,15 @@
 namespace app\userapi\controller\v1;
 
 
-use app\common\exception\ParamException;
-use app\common\model\CategoryModel;
 use app\common\model\ProductModel;
-use app\common\model\ThemeModel;
-use app\common\model\ThemeProductModel;
 use app\userapi\controller\UserApi;
 use think\Request;
 
 class Product extends UserApi
 {
     protected $no_need_token = [
-        'getProductList'
+        'getProductList',
+        'getProductFind'
     ];
 
     /**

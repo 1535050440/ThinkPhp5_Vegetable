@@ -32,4 +32,9 @@ class Order extends UserApi
 
     }
 
+    public function addOrder(Request $request)
+    {
+
+    }
+
 }
