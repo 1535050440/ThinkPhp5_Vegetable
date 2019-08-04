@@ -23,10 +23,15 @@ class OrderModel extends BaseModel
         $list_rows = empty($condition['list_rows'])?:10;
         $page = empty($condition['page'])?:1;
 
-        $query = self::field('*');
+        $query = self::alias('a')
+            ->field('a.*')
+            ->field('b.*')
+            ->field('img.*')
+            ->join('order_product b','a.id = b.order_id','left')
+            ->join('image img','b.img_id = img.id','left');
 
         if (!empty($condition['user_id'])) {
-            $query->where('user_id','=',$condition['user_id']);
+            $query->where('a.user_id','=',$condition['user_id']);
         }
 
         return $query->paginate($list_rows,false,['page'=>$page]);
