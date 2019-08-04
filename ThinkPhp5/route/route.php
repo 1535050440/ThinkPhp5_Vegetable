@@ -25,6 +25,7 @@ Route::get('userapi/v1/product_find','userapi/v1.Product/getProductFind');
 
 //  订单
 Route::get('userapi/v1/order_list','userapi/v1.Order/getOrderList');
+Route::post('userapi/v1/order/add_order','userapi/v1.Order/addOrder');
 
 //  wechat登陆
 Route::any('userapi/v1/login','userapi/v1.Login/login');
@@ -47,6 +48,11 @@ Route::any('userapi/v1/user/update_info','userapi/v1.User/updateUserInfo');
 Route::any('userapi/v1/product/getProductList','userapi/v1.Product/getProductList');
 
 Route::any('userapi/v1/order/add_order','userapi/v1.Order/addOrder');
+
+//  新增收货地址
+Route::any('userapi/v1/user/address/add','userapi/v1.UserAddress/add');
+Route::any('userapi/v1/user/address/list','userapi/v1.UserAddress/getUserAddressList');
+Route::any('userapi/v1/user/address/find','userapi/v1.UserAddress/getUserAddressFind');
 
 //  -------------------------------商品
 

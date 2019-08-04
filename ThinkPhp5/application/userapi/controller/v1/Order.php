@@ -10,6 +10,7 @@ namespace app\userapi\controller\v1;
 
 
 use app\common\model\OrderModel;
+use app\common\model\UserModel;
 use app\userapi\controller\UserApi;
 use think\Request;
 
@@ -32,8 +33,22 @@ class Order extends UserApi
 
     }
 
+    /**
+     * @param Request $request
+     * @throws \app\common\exception\ParamException
+     * @deng      2019/8/4    22:20
+     */
     public function addOrder(Request $request)
     {
+        $orderArray = $request->param('products');
+
+        $user_id = $request->user->id;
+
+        $userFind = UserModel::get($user_id);
+
+        $result = $userFind->addOrder($orderArray);
+
+        $this->success($result);
 
     }
 
