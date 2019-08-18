@@ -33,6 +33,7 @@ class OrderModel extends BaseModel
         if (!empty($condition['user_id'])) {
             $query->where('a.user_id','=',$condition['user_id']);
         }
+        $query->order('a.id desc');
 
         return $query->paginate($list_rows,false,['page'=>$page]);
     }
